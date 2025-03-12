@@ -1,4 +1,4 @@
-<footer class="bg-dark text-light py-4">
+<footer class="bg-dark text-light">
     <div class="container text-center">
         <h5 class="mb-1">Mattia Esposito</h5>
         <p class="small">Full Stack Web Developer</p>

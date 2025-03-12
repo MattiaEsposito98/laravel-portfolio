@@ -5,8 +5,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
+// Rotta per la pagina principale
 Route::get('/', function () {
-    return view('welcome');
+    Route::get('/', [ProjectController::class, 'index']);
 });
 
 Route::get('/dashboard', function () {
@@ -21,19 +22,13 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::get('/home', function () {
-    return view('layouts.projects');
-});
-
+// Rotta per i progetti (resto delle rotte gestite dal controller)
+Route::resource('projects', ProjectController::class);
 
 // Rotta per admin
 Route::middleware(['auth', 'verified'])
     ->name('admin')
     ->prefix('admin')
     ->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])
-            ->name('index');
+        Route::get('/', [DashboardController::class, 'index'])->name('index');
     });
-
-
-Route::resource("projects", ProjectController::class);

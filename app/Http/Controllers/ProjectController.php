@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -11,12 +12,11 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('layouts.projects');
+        $projects = Project::all();
+        return view('layouts.projects', compact('projects'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         //
@@ -33,9 +33,10 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Project $project)
     {
-        //
+        dd($project);
+        return view("projects.show", compact("project"));
     }
 
     /**

@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', 'Welcome')</title>
     @vite(['resources/js/app.js'])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
 
@@ -17,8 +18,10 @@
     </header>
 
     {{-- Main --}}
-    <main class="container-fluid flex-grow-1">
-        @yield('content')
+    <main class="container flex-grow-1">
+        <h1>I miei progetti</h1>
+        @include('projects.index')
+
     </main>
 
     {{-- Footer --}}
