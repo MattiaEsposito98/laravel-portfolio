@@ -3,21 +3,22 @@
     <h1 class="text-center ">I miei progetti</h1>
     <table class="table table-info">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th scope="col">Titolo</th>
-                <th scope="col">Descrizione</th>
+                {{-- <th scope="col">Descrizione</th> --}}
                 <th scope="col">Tecnologie</th>
                 <th scope="col">Tipo </th>
                 <th scope="col">GitHub</th>
                 <th scope="col">Stato</th>
                 <th scope="col">Dettagli</th>
+                <th scope="col">Modifica</th>
+
             </tr>
         </thead>
         <tbody>
             @foreach ($projects as $project)
-                <tr class="table-primary">
+                <tr class="table-primary text-center ">
                     <td>{{ $project->title }}</td>
-                    <td>{{ $project->description }}</td>
                     <td>
                         @foreach (json_decode($project->technologies, true) as $technology)
                             <p>{{ $technology }}</p>
@@ -40,8 +41,46 @@
                     <td>
                         <a href="{{ route('projects.show', $project->id) }}"> Visualizza</a>
                     </td>
+                    <td>
+                        <div class="d-flex justify-content-around">
+                            <a class="btn btn-outline-warning" href="">Modifica</a>
+
+                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop">
+                                Elimina
+                            </button>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
+
+
+
         </tbody>
     </table>
+    <a href="{{ route('projects.create') }}" class="btn btn-outline-primary">Crea Nuovo Progetto</a>
 @endsection
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Vuoi eliminare il progetto?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Cliccando su conferma eliminerai il progetto
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <form action="{{ route('projects.destroy', $project) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" class="btn btn-outline-danger" value="Elimina">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
