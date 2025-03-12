@@ -1,13 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
-// Rotta per la pagina principale
+// Rotta per pagina welcome
 Route::get('/', function () {
-    Route::get('/', [ProjectController::class, 'index']);
+    return view('welcome');
 });
 
 Route::get('/dashboard', function () {
@@ -22,13 +23,18 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-// Rotta per i progetti (resto delle rotte gestite dal controller)
-Route::resource('projects', ProjectController::class);
-
 // Rotta per admin
 Route::middleware(['auth', 'verified'])
     ->name('admin')
     ->prefix('admin')
     ->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('index');
+        Route::get('/', [DashboardController::class, 'index'])
+            ->name('index');
+
+        Route::get('/profile', [DashboardController::class, 'profile'])
+            ->name('profile');
     });
+
+// Rotta per i progetti (resto delle rotte gestite dal controller)
+Route::resource('projects', ProjectController::class)
+    ->middleware(['auth', 'verified']);

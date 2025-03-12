@@ -19,9 +19,7 @@
 
     {{-- Main --}}
     <main class="container flex-grow-1">
-        <h1>I miei progetti</h1>
-        @include('projects.index')
-
+        @yield('content')
     </main>
 
     {{-- Footer --}}
