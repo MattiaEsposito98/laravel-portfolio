@@ -7,6 +7,7 @@
                 <th scope="col">Titolo</th>
                 <th scope="col">Descrizione</th>
                 <th scope="col">Tecnologie</th>
+                <th scope="col">Tipo </th>
                 <th scope="col">GitHub</th>
                 <th scope="col">Stato</th>
                 <th scope="col">Dettagli</th>
@@ -23,6 +24,7 @@
                         @endforeach
 
                     </td>
+                    <td>{{ $project->type }}</td>
                     <td><a href="{{ $project->github_link }}" target="_blank">GitHub</a></td>
                     <td
                         class="{{ $project->status === 'Completato' ? 'table-success' : ($project->status === 'In corso' ? 'table-info' : 'table-warning') }}">

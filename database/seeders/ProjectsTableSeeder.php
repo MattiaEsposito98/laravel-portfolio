@@ -20,6 +20,7 @@ class ProjectsTableSeeder extends Seeder
             $newProject->description = $faker->paragraph(4);
             $newProject->image = $faker->imageUrl(640, 480, 'technology');
             $newProject->technologies = json_encode($faker->randomElements(['Laravel', 'Vue.js', 'React', 'Node.js', 'PHP', 'MySQL'], 2));
+            $newProject->type = $faker->sentence(1);
             $newProject->github_link = $faker->url();
             $newProject->status = $faker->randomElement(['In corso', 'Completato', 'In attesa']);
             $newProject->save();
