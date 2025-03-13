@@ -7,6 +7,8 @@ use Faker\Generator as Faker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use function PHPSTORM_META\type;
+
 class ProjectsTableSeeder extends Seeder
 {
     /**
@@ -20,7 +22,7 @@ class ProjectsTableSeeder extends Seeder
             $newProject->description = $faker->paragraph(4);
             $newProject->image = $faker->imageUrl(640, 480, 'technology');
             $newProject->technologies = json_encode($faker->randomElements(['Laravel', 'Vue.js', 'React', 'Node.js', 'PHP', 'MySQL'], 2));
-            $newProject->type = $faker->sentence(1);
+            $newProject->type_id = rand(1, 24);
             $newProject->github_link = $faker->url();
             $newProject->status = $faker->randomElement(['In corso', 'Completato', 'In attesa']);
             $newProject->save();
