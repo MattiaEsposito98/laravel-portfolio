@@ -82,6 +82,6 @@
             <label for="status" class="form-label">Stato del progetto</label>
             <input type="text" class="form-control" id="status" name="status">
         </div>
-        <input class="btn btn-primary" type="submit" value="Submit">
+        <input class="btn btn-primary" type="submit" value="Salva">
     </form>
 @endsection

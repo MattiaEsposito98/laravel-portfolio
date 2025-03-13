@@ -39,11 +39,13 @@
                         @endif
                     </td>
                     <td>
-                        <a href="{{ route('projects.show', $project->id) }}"> Visualizza</a>
+                        {{-- <a href="{{ route('projects.show', $project->id) }}"> Visualizza</a> --}}
+                        <a class="btn btn-outline-info" href="{{ route('projects.show', $project->id) }}">Visualizza</a>
+
                     </td>
                     <td>
-                        <div class="d-flex justify-content-around">
-                            <a class="btn btn-outline-warning" href="">Modifica</a>
+                        <div class="d-flex justify-content-around gap-1">
+                            <a class="btn btn-outline-warning" href="{{ route('projects.edit', $project) }}">Modifica</a>
 
                             <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop">
