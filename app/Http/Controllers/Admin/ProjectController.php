@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -47,6 +48,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        // dd($project->type); Qui per leggere i valori dell'entità type da project
         return view("projects.show", compact("project"));
     }
 

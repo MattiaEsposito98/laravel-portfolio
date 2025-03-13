@@ -25,7 +25,8 @@
                         @endforeach
 
                     </td>
-                    <td>{{ $project->type }}</td>
+                    {{-- Per accedere al nome dell'entita Type dall'entità dipendente Project --}}
+                    <td>{{ $project->type->name }}</td>
                     <td><a href="{{ $project->github_link }}" target="_blank">GitHub</a></td>
                     <td
                         class="{{ $project->status === 'Completato' ? 'table-success' : ($project->status === 'In corso' ? 'table-info' : 'table-warning') }}">
