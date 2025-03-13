@@ -1,21 +1,46 @@
 @extends('layouts.projects')
 
-
 @section('title', $project->title)
 
 @section('content')
-    <div class="container">
-        <h1>{{ $project->title }}</h1>
-        <p>{{ $project->description }}</p>
-        <article>
-            <img src="{{ $project->image }}" alt="{{ $project->title }}">
-        </article>
-        <ul> Tecnologie usate:
-            @foreach (json_decode($project->technologies, true) as $technology)
-                <li>{{ $technology }}</li>
-            @endforeach
-        </ul>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0">{{ $project->title }}</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <img src="{{ $project->image }}" alt="{{ $project->title }}" class="img-fluid rounded shadow"
+                                style="max-height: 300px;">
+                        </div>
+                        <p class="lead">{{ $project->description }}</p>
 
-        <p>Stato: <strong>{{ $project->status }}</strong></p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Tipologia del sito:</strong> {{ $project->type->name }}
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Stato:</strong> <span class="badge bg-success">{{ $project->status }}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Tecnologie usate:</strong>
+                                <ul class="mt-2">
+                                    @foreach (json_decode($project->technologies, true) as $technology)
+                                        <li class="badge bg-secondary me-1">{{ $technology }}</li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="mt-3 text-end">
+                            <a href="{{ route('projects.index') }}" class="btn btn-outline-secondary">Torna ai progetti</a>
+                            <a href="{{ $project->github_link }}" class="btn btn-dark" target="_blank">Vedi su GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

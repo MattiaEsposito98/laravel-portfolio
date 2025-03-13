@@ -85,7 +85,11 @@
         {{-- status --}}
         <div class="mb-3">
             <label for="status" class="form-label">Stato del progetto</label>
-            <input type="text" class="form-control" id="status" name="status">
+            <select name="status" id="status">
+                <option value="Completato">Completato</option>
+                <option value="In corso">In corso</option>
+                <option value="In attesa">In attesa</option>
+            </select>
         </div>
         <input class="btn btn-primary" type="submit" value="Salva">
     </form>
