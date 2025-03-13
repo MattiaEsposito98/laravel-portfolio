@@ -21,7 +21,8 @@ class ProjectController extends Controller
 
     public function create()
     {
-        return view('projects.create');
+        $types = Type::all();
+        return view('projects.create', compact('types'));
     }
 
     /**
@@ -35,7 +36,7 @@ class ProjectController extends Controller
         $newProject->description = $data['description'];
         $newProject->image = $data['image'];
         $newProject->technologies = json_encode($data['technologies']);
-        $newProject->type = $data['type'];
+        $newProject->type_id = $data['type_id'];
         $newProject->github_link = $data['github_link'];
         $newProject->status = $data['status'];
         // dd($newProject);
@@ -57,7 +58,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('projects.edit', compact('project'));
+        $types = Type::all();
+        return view('projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -70,7 +72,7 @@ class ProjectController extends Controller
         $project->description = $data['description'];
         $project->image = $data['image'];
         $project->technologies = $data['technologies'];
-        $project->type = $data['type'];
+        $project->type_id = $data['type_id'];
         $project->github_link = $data['github_link'];
         $project->status = $data['status'];
         $project->update();
@@ -82,9 +84,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        // $project->delete();
-        // return redirect()->route('projects.index');
+        $project->delete();
+        return redirect()->route('projects.index');
 
-        return 'sei nella destroy';
+        // return 'sei nella destroy';
     }
 }

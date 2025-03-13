@@ -83,7 +83,12 @@
         {{-- Type --}}
         <div class="mb-3">
             <label for="type" class="form-label">Tipologia</label>
-            <input type="text" class="form-control" id="type" name="type" value="{{ $project->type }}">
+            <select name="type_id" id="type_id">
+                @foreach ($types as $type)
+                    <option value="{{ $type->id }}" {{ $project->type_id == $type->id ? 'selected' : '' }}>
+                        {{ $type->name }}</option>
+                @endforeach
+            </select>
         </div>
 
         {{-- Github --}}
