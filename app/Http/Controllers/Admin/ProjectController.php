@@ -68,7 +68,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('projects.edit', compact('project', 'types'));
+        $technologies = Technology::all();
+        return view('projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -84,7 +85,11 @@ class ProjectController extends Controller
         $project->type_id = $data['type_id'];
         $project->github_link = $data['github_link'];
         $project->status = $data['status'];
+
         $project->update();
+
+        // Sincornizziamo i dati della tabella 
+        $project->technologies()->sync($request->input('technologies'));
         return redirect()->route('projects.show', $project);
     }
 
@@ -93,6 +98,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+
+        // Rimuovi prima le associazioni dalla tabella pivot
+        $project->technologies()->detach();
+
         $project->delete();
         return redirect()->route('projects.index');
 
