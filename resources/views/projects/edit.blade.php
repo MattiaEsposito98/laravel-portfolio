@@ -1,6 +1,6 @@
 @extends('layouts.projects')
 
-@section('title', 'Nuovo progetto')
+@section('title', 'Modifica progetto')
 
 
 

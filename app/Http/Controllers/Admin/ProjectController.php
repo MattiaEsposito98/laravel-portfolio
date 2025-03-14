@@ -35,7 +35,7 @@ class ProjectController extends Controller
         $newProject->title = $data['title'];
         $newProject->description = $data['description'];
         $newProject->image = $data['image'];
-        $newProject->technologies = json_encode($data['technologies']);
+        // $newProject->technologies = json_encode($data['technologies']);
         $newProject->type_id = $data['type_id'];
         $newProject->github_link = $data['github_link'];
         $newProject->status = $data['status'];
@@ -71,7 +71,7 @@ class ProjectController extends Controller
         $project->title = $data['title'];
         $project->description = $data['description'];
         $project->image = $data['image'];
-        $project->technologies = $data['technologies'];
+        // $project->technologies = $data['technologies'];
         $project->type_id = $data['type_id'];
         $project->github_link = $data['github_link'];
         $project->status = $data['status'];

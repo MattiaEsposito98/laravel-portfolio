@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('image');
-            $table->json('technologies');
-            $table->foreignId('type_id')->default(1)->constrained()->onDelete('cascade')->after('technologies');
+            // $table->json('technologies');
+            $table->foreignId('type_id')->default(1)->constrained()->onDelete('cascade')->after('image');
             $table->string('github_link');
             $table->string('status');
             $table->timestamps();
