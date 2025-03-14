@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('projects.create', compact('types'));
+        $technologies = Technology::all();
+        return view('projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -30,17 +32,23 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+
         $data = $request->all();
+        // dd($data);
+        // dd($data['technologies']);
         $newProject = new Project();
+
         $newProject->title = $data['title'];
         $newProject->description = $data['description'];
         $newProject->image = $data['image'];
-        // $newProject->technologies = json_encode($data['technologies']);
         $newProject->type_id = $data['type_id'];
         $newProject->github_link = $data['github_link'];
         $newProject->status = $data['status'];
-        // dd($newProject);
+
         $newProject->save();
+
+        // Salvare le technologie usando attach
+        $newProject->technologies()->attach($data['technologies']);
         return redirect()->route('projects.show', $newProject);
     }
 
@@ -49,8 +57,9 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        $technologies = $project->technologies;
         // dd($project->type); Qui per leggere i valori dell'entità type da project
-        return view("projects.show", compact("project"));
+        return view("projects.show", compact("project", 'technologies'));
     }
 
     /**

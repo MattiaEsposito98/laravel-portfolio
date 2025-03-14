@@ -21,6 +21,7 @@ class TechnologiesTableSeeder extends Seeder
             'JavaScript',
             'Node.js',
             'React',
+            'MySQL',
             'PHP',
             'Laravel'
         ];

@@ -20,9 +20,7 @@
                 <tr class="table-primary text-center ">
                     <td>{{ $project->title }}</td>
                     <td>
-                        @foreach (json_decode($project->technologies, true) as $technology)
-                            <p>{{ $technology }}</p>
-                        @endforeach
+                        Inserire
 
                     </td>
                     {{-- Per accedere al nome dell'entita Type dall'entità dipendente Project --}}

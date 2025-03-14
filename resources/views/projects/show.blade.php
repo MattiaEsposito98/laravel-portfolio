@@ -24,14 +24,23 @@
                             <li class="list-group-item">
                                 <strong>Stato:</strong> <span class="badge bg-success">{{ $project->status }}</span>
                             </li>
-                            <li class="list-group-item">
-                                <strong>Tecnologie usate:</strong>
-                                <ul class="mt-2">
-                                    @foreach (json_decode($project->technologies, true) as $technology)
-                                        <li class="badge bg-secondary me-1">{{ $technology }}</li>
-                                    @endforeach
-                                </ul>
-                            </li>
+
+                            @if (count($technologies) > 0)
+                                <li class="list-group-item">
+                                    <strong>Tecnologie usate:</strong>
+                                    <ul class="mt-2">
+
+                                        @foreach ($technologies as $technology)
+                                            <li class="badge me-1" style="background-color: {{ $technology->color }};">
+                                                {{ $technology->name }}
+                                            </li>
+                                        @endforeach
+
+                                    </ul>
+                                </li>
+                            @endif
+
+
                         </ul>
 
                         <div class="mt-3 text-end">

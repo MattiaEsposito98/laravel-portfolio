@@ -28,69 +28,44 @@
         {{-- Technologie --}}
         <div class="mb-3">
             <label class="form-label">Inserisci le tecnologie usate:</label>
-            <div class="d-flex gap-3">
+            <div class="d-flex gap-4 flex-wrap">
                 <div>
-                    <input type="checkbox" id="laravel" name="technologies[]" value="Laravel">
-                    <label for="laravel">Laravel</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="react" name="technologies[]" value="React">
-                    <label for="react">React</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="vue" name="technologies[]" value="Vue.js">
-                    <label for="vue">Vue.js</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="node" name="technologies[]" value="Node.js">
-                    <label for="node">Node.js</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="php" name="technologies[]" value="PHP">
-                    <label for="php">PHP</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="mysql" name="technologies[]" value="MySQL">
-                    <label for="mysql">MySQL</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="JavaScript" name="technologies[]" value="JavaScript">
-                    <label for="JavaScript">JavaScript</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="Bootstrap" name="technologies[]" value="Bootstrap">
-                    <label for="Bootstrap">Bootstrap</label>
+                    @foreach ($technologies as $technology)
+                        <input type="checkbox" id="technology-{{ $technology->id }}" name="technologies[]"
+                            value="{{ $technology->id }}">
+                        <label for="technology-{{ $technology->id }}">{{ $technology->name }}</label>
+                    @endforeach
+
                 </div>
             </div>
-        </div>
 
-        {{-- Type --}}
-        <div class="mb-3">
-            <label for="type_id" class="form-label">Tipologia</label>
-            <select name="type_id" id="type_id">
+            {{-- Type --}}
+            <div class="mb-3">
+                <label for="type_id" class="form-label">Tipologia</label>
+                <select name="type_id" id="type_id">
 
-                @foreach ($types as $type)
-                    <option value="{{ $type->id }}">
-                        {{ $type->name }}</option>
-                @endforeach
-            </select>
-        </div>
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}">
+                            {{ $type->name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-        {{-- Github --}}
-        <div class="mb-3">
-            <label for="github_link" class="form-label">Link per Github</label>
-            <input type="text" class="form-control" id="github_link" name="github_link">
-        </div>
+            {{-- Github --}}
+            <div class="mb-3">
+                <label for="github_link" class="form-label">Link per Github</label>
+                <input type="text" class="form-control" id="github_link" name="github_link">
+            </div>
 
-        {{-- status --}}
-        <div class="mb-3">
-            <label for="status" class="form-label">Stato del progetto</label>
-            <select name="status" id="status">
-                <option value="Completato">Completato</option>
-                <option value="In corso">In corso</option>
-                <option value="In attesa">In attesa</option>
-            </select>
-        </div>
-        <input class="btn btn-primary" type="submit" value="Salva">
+            {{-- status --}}
+            <div class="mb-3">
+                <label for="status" class="form-label">Stato del progetto</label>
+                <select name="status" id="status">
+                    <option value="Completato">Completato</option>
+                    <option value="In corso">In corso</option>
+                    <option value="In attesa">In attesa</option>
+                </select>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Salva">
     </form>
 @endsection
