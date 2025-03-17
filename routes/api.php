@@ -8,5 +8,8 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
-
+// Index
 Route::get('/projects', [ProjectController::class, 'index']);
+
+// Show
+Route::get('/projects/{project}', [ProjectController::class, 'show']);
