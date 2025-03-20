@@ -17,7 +17,7 @@ class ProjectController extends Controller
     {
         $projects = Project::all();
         // Carica tutti i progetti con le tecnologie associate
-        $projects = Project::with('technologies')->get();
+        $projects = Project::with('technologies',)->get();
         return view('projects.index', compact('projects'));
     }
 

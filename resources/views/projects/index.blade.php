@@ -1,4 +1,5 @@
 @extends('layouts.projects')
+
 @section('content')
     <h1 class="text-center">
         I miei progetti</h1>
